@@ -3,6 +3,7 @@ package br.com.gustavo.inventarioAPI.domain.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "tb_product")
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Product {
 
     @Id

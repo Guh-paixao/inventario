@@ -1,7 +1,7 @@
 package br.com.gustavo.inventarioAPI.application.service.impl;
 
-import br.com.gustavo.inventarioAPI.application.dto.ProductRequestDTO;
-import br.com.gustavo.inventarioAPI.application.dto.ProductResponseDTO;
+import br.com.gustavo.inventarioAPI.application.dto.product.ProductRequestDTO;
+import br.com.gustavo.inventarioAPI.application.dto.product.ProductResponseDTO;
 import br.com.gustavo.inventarioAPI.application.service.ProductService;
 import br.com.gustavo.inventarioAPI.domain.entity.Product;
 import br.com.gustavo.inventarioAPI.domain.repository.ProductRepository;
@@ -20,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
+    @Override
     public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO) {
         Product product = convertDTOToEntity(productRequestDTO);
         Product savedProduct = productRepository.save(product);
@@ -42,12 +43,14 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
     public ProductResponseDTO getProductById(UUID id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Product not found with id: " + id));
         return convertEntityToDTO(product);
     }
 
+    @Override
     public List<ProductResponseDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream()
@@ -55,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
                 .toList();
     }
 
+    @Override
     public void deleteProduct(UUID id) {
         if (!productRepository.existsById(id)) {
             throw new NoSuchElementException("Product not found with id: " + id);
@@ -62,7 +66,8 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
-    private Product convertDTOToEntity(ProductRequestDTO productRequestDTO) {
+    @Override
+    public Product convertDTOToEntity(ProductRequestDTO productRequestDTO) {
         return Product.builder()
                 .name(productRequestDTO.name())
                 .description(productRequestDTO.description())
@@ -71,7 +76,8 @@ public class ProductServiceImpl implements ProductService {
                 .build();
     }
 
-    private ProductResponseDTO convertEntityToDTO(Product product) {
+    @Override
+    public ProductResponseDTO convertEntityToDTO(Product product) {
         return new ProductResponseDTO(
                 product.getId(),
                 product.getName(),

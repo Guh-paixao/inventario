@@ -1,7 +1,7 @@
 package br.com.gustavo.inventarioAPI.interfaces;
 
-import br.com.gustavo.inventarioAPI.application.dto.ProductRequestDTO;
-import br.com.gustavo.inventarioAPI.application.dto.ProductResponseDTO;
+import br.com.gustavo.inventarioAPI.application.dto.product.ProductRequestDTO;
+import br.com.gustavo.inventarioAPI.application.dto.product.ProductResponseDTO;
 import br.com.gustavo.inventarioAPI.application.service.impl.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
