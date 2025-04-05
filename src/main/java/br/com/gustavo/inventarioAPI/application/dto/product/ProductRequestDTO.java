@@ -1,4 +1,4 @@
-package br.com.gustavo.inventarioAPI.application.dto;
+package br.com.gustavo.inventarioAPI.application.dto.product;
 
 import java.math.BigDecimal;
 
